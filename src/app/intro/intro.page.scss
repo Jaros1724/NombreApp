@@ -1,0 +1,29 @@
+swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+swiper-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.slide-1 {
+  background-color: rgb(180, 26, 144);
+  font-size: 30px;
+}
+.slide-2 {
+  background-color: rgb(43, 144, 73);
+}
+.slide-3 {
+  background-color: rgb(14, 23, 137);
+}
+.slide-4 {
+  background-color: rgb(208, 213, 55);
+}
+
+
+
+
+
