@@ -37,10 +37,11 @@ export class IntroPage {
   goToHome(){
     console.log("go to home");
     this.router.navigateByUrl('/home');
-    this.storage.set('mostreLaIntro', true);
+
   }
     ionViewDidEnter() {
       console.log("Ya entre y vi la intro");
+      this.storage.set('mostreLaIntro', true);
 
     }
  }
