@@ -1,5 +1,8 @@
+import { AuthService } from './../services/auth.service';
+import { Router, } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder,FormControl,FormGroup,Validators,} from '@angular/forms';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -7,32 +10,49 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-
   loginForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  Validation_messages = {
+    email: [
+      { type: 'required', message: 'El email es obligatorio.' },
+      { type: 'pattern', message: 'El email ingresado no es valido.' },
+    ],
+    password: [
+      { type: 'required', message: 'la contraseña es obligatorio.' },
+      { type: 'pattern', message: 'la contraseña ingresada no es valido.' },
+    ]
+  };
+   loginMessage: any = '';
+  constructor(
+    private formBuilder: FormBuilder,
+    private AuthService: AuthService,
+    private navCtrl: NavController
+    ) {
     this.loginForm = this.formBuilder.group({
       email: new FormControl(
-        "",
-          Validators.compose([
+        '',
+        Validators.compose([
           Validators.required,
-          Validators.pattern(
-            "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
-          )
+          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
         ])
       ),
-        password: new FormControl(
-          "",
-          Validators.compose([Validators.maxLength(12),
-            Validators.required, Validators.minLength(8),
-             Validators.pattern(/(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.\W)/)]),
-
-        )
-    })
-
+      password: new FormControl(
+        '',
+        Validators.compose([
+          Validators.maxLength(12),
+          Validators.required,
+          Validators.minLength(8),
+        ])
+      ),
+    });
   }
 
-
-login(login_data: any){
-  console.log(login_data);
-}
+  login(login_data: any) {
+    console.log(login_data);
+    this.AuthService.loginUser(login_data).then(res => {
+      this.loginMessage = res;
+      this.navCtrl.navigateForward('/home');
+    }).catch(Error =>{
+      this.loginMessage = Error;
+    })
+  }
 }

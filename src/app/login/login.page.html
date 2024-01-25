@@ -8,26 +8,59 @@
   <ion-avatar class="center-avatar">
     <img
       src="../../assets/images/pngtree-user-icon-isolated-on-abstract-background-png-image_1875037.jpg"
-      alt="logo" class="logo">
+      alt="logo"
+      class="logo"
+    />
   </ion-avatar>
   <form class="a" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
-
-    <ion-input label="email" label-placement="floating" fill="solid"
-      placeholder="Ingrese su email" formControlName="email"></ion-input>
+    <ion-input
+      label="email"
+      label-placement="floating"
+      fill="solid"
+      placeholder="Ingrese su email"
+      formControlName="email"
+    ></ion-input>
+    <div class="validation-message">
+      <ng-container *ngFor="let validation of Validation_messages.email">
+        <div *ngIf="
+        (loginForm.get('email')?.hasError(validation.type) &&
+        loginForm.get('email')?.dirty)
+        ">{{validation.message}}</div>
+      </ng-container>
+    </div>
 
     <br />
 
-    <ion-input label="password" label-placement="floating" fill="outline"
-      placeholder="Ingrese su contraseña" formControlName="password"></ion-input>
+    <ion-input
+      label="password"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Ingrese su contraseña"
+      formControlName="password"
+    ></ion-input>
 
-      <ion-button class="b" type="submit"
+
+    <div class="validation-message">
+      <ng-container *ngFor="let validation of Validation_messages.password">
+        <div *ngIf="
+        (loginForm.get('password')?.hasError(validation.type) &&
+        loginForm.get('password')?.dirty)
+        ">{{validation.message}}</div>
+      </ng-container>
+    </div>
+
+    <ion-button
+      class="b"
+      type="submit"
       [disabled]="!loginForm.valid"
       color="light"
       expand="full"
       shape="round"
-      >Login</ion-button>
-    </form>
-
-
-
+      >Login</ion-button
+    >
+  </form>
+  <br>
+  <div class="validation-message">
+   {{loginMessage}}
+  </div>
 </ion-content>
