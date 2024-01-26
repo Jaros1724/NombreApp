@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-avatar class="center-avatar">
+    <img
+      src="../../assets/images/pngtree-user-icon-isolated-on-abstract-background-png-image_1875037.jpg"
+      alt="logo"
+      class="logo"
+    />
+  </ion-avatar>
+  <form class="a" [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+    <br />
+    <ion-input
+      label="email"
+      label-placement="floating"
+      fill="solid"
+      placeholder="Ingrese su email"
+      formControlName="email"
+    ></ion-input>
+    <div class="validation-message">
+      <ng-container *ngFor="let validation of Validation_messages.email">
+        <div *ngIf="
+        (registerForm.get('email')?.hasError(validation.type) &&
+        registerForm.get('email')?.dirty)
+        ">{{validation.message}}</div>
+      </ng-container>
+    </div>
+    <br />
+    <ion-input
+      label="nombre"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Ingrese su nombre"
+      formControlName="name"
+    ></ion-input>
+    <br />
+
+    <ion-input
+      label="apellido"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Ingrese su apellido"
+      formControlName="last_name"
+    ></ion-input>
+    <br />
+
+    <ion-input
+      label="password"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Ingrese su contraseña"
+      formControlName="password"
+      type="password"
+    ></ion-input>
+
+    <div class="validation-message">
+      <ng-container *ngFor="let validation of Validation_messages.password">
+        <div *ngIf="
+        (registerForm.get('password')?.hasError(validation.type) &&
+        registerForm.get('password')?.dirty)
+        ">{{validation.message}}</div>
+      </ng-container>
+    </div>
+    <ion-input
+      label="password"
+      label-placement="floating"
+      fill="outline"
+      placeholder="confirme su contraseña"
+      formControlName="confirmation_password"
+      type="password"
+    ></ion-input>
+    <ion-button
+    class="b"
+    type="submit"
+    [disabled]="!registerForm.valid"
+    color="light"
+    expand="full"
+    shape="round"
+    >Login</ion-button
+  >
+  <br />
+  <div class="validation-message">
+    {{registerMessage}}
+   </div>
+
+
+  </form>
+</ion-content>

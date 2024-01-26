@@ -1,8 +1,9 @@
 import { AuthService } from './../services/auth.service';
-import { Router, } from '@angular/router';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormControl,FormGroup,Validators,} from '@angular/forms';
 import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import { NavController } from '@ionic/angular';
 })
 export class LoginPage {
   loginForm: FormGroup;
+
   Validation_messages = {
     email: [
       { type: 'required', message: 'El email es obligatorio.' },
@@ -25,7 +27,8 @@ export class LoginPage {
   constructor(
     private formBuilder: FormBuilder,
     private AuthService: AuthService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private storage: Storage
     ) {
     this.loginForm = this.formBuilder.group({
       email: new FormControl(
@@ -50,6 +53,7 @@ export class LoginPage {
     console.log(login_data);
     this.AuthService.loginUser(login_data).then(res => {
       this.loginMessage = res;
+      this.storage.set('userLoggedIn', true);
       this.navCtrl.navigateForward('/home');
     }).catch(Error =>{
       this.loginMessage = Error;
