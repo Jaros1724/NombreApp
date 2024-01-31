@@ -19,5 +19,19 @@ export class AuthService {
       }
     });
 
-  }
+  };
+    registeredUser(credential: any){
+      return new Promise((accept, reject) => {
+        if (
+          credential.name == 'jair'
+          && credential.last_name == 'rodriguez'
+          && credential.confirmation_password =='12345635'
+          ){
+            reject('tu registro ha sido incorrecto')
+          }else{
+            accept('te has registrado');
+          }
+
+      })
+    }
 }

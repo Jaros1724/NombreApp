@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-buttons>
+      <ion-icon class="c" name="arrow-back-circle" (click)="goToLogin()" >volver</ion-icon>
+    </ion-buttons>
+    <ion-title style="text-align: center;">Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -37,6 +40,15 @@
       placeholder="Ingrese su nombre"
       formControlName="name"
     ></ion-input>
+    <div class="validation-message">
+      <ng-container *ngFor="let validation of Validation_messages.name">
+        <div *ngIf="
+        registerForm.get('name')?.hasError(validation.type) &&
+        registerForm.get('name')?.dirty
+        ">{{validation.message}}</div>
+      </ng-container>
+
+    </div>
     <br />
 
     <ion-input
@@ -46,6 +58,14 @@
       placeholder="Ingrese su apellido"
       formControlName="last_name"
     ></ion-input>
+    <div class="validation-message">
+      <ng-container *ngFor="let validation of Validation_messages.last_name">
+      <div *ngIf="
+      registerForm.get('last_name')?.hasError(validation.type) &&
+      registerForm.get('last_name')?.dirty
+      ">{{validation.message}}</div>
+      </ng-container>
+    </div>
     <br />
 
     <ion-input
@@ -54,7 +74,7 @@
       fill="outline"
       placeholder="Ingrese su contraseña"
       formControlName="password"
-      type="password"
+      type=""
     ></ion-input>
 
     <div class="validation-message">
@@ -71,8 +91,19 @@
       fill="outline"
       placeholder="confirme su contraseña"
       formControlName="confirmation_password"
-      type="password"
+      type=""
     ></ion-input>
+       <div class="validation-message">
+        <ng-container *ngFor="let validation of Validation_messages.confirmation_password" >
+        <div *ngIf="
+        (registerForm.get('confirmation_password')?.hasError(validation.type) &&
+        registerForm.get('confirmation_password')?.dirty)
+        ">{{validation.message}}</div>
+        </ng-container>
+
+       </div>
+
+
     <ion-button
     class="b"
     type="submit"
@@ -80,7 +111,7 @@
     color="light"
     expand="full"
     shape="round"
-    >Login</ion-button
+    >Registrarme</ion-button
   >
   <br />
   <div class="validation-message">
