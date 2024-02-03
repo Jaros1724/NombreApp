@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { MenuPage } from './menu.page';
 
 const routes: Routes = [
@@ -12,6 +11,11 @@ const routes: Routes = [
         path: "home",
         loadChildren: () =>
         import("../home/home.module").then(m => m.HomePageModule)
+      },
+      {
+        path: "intro",
+        loadChildren: () =>
+        import("../intro/intro.module").then(m => m.IntroPageModule)
       }
     ]
   }

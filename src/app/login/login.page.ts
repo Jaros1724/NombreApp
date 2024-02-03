@@ -55,7 +55,7 @@ export class LoginPage {
       this.loginMessage = res;
       this.storage.set('userLoggedIn', true);
       console.log("login correcto te dirigo al home")
-      this.navCtrl.navigateForward('/home');
+      this.navCtrl.navigateForward('/menu/home');
     }).catch(Error =>{
       this.loginMessage = Error;
     })

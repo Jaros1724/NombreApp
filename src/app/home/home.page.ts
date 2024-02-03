@@ -9,6 +9,7 @@ import { EventsService } from '../services/events.service';
 })
 export class HomePage {
 
+event_list: any;
 
   constructor(private router: Router,
     private storage: Storage,
@@ -16,12 +17,18 @@ export class HomePage {
     ) {}
 
     ionViewDidEnter(){
-     console.log(this.events.getEvents());
+     this.events.getEvents().then(
+      res =>{
+        this.event_list = res;
+        console.log("Eventos desde el servidor",this.event_list);
+      }
+     )
+     console.log("local Events",this.events.getLocalEvents().events);
     }
 
   goToIntro(){
     console.log("go to intro");
-    this.router.navigateByUrl('/intro');
+    this.router.navigateByUrl('/menu/intro');
   }
 
 }
