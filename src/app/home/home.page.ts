@@ -10,6 +10,7 @@ import { EventsService } from '../services/events.service';
 export class HomePage {
 
 event_list: any;
+catego_list: any;
 
   constructor(private router: Router,
     private storage: Storage,
@@ -22,9 +23,36 @@ event_list: any;
         this.event_list = res;
         console.log("Eventos desde el servidor",this.event_list);
       }
-     )
+     );
      console.log("local Events",this.events.getLocalEvents().events);
+
+     this.events.getCatego().then(
+      res =>{
+        this.catego_list = res;
+        console.log("Categorias desde el servidor",this.catego_list);
+        }
+    );
+
+    this.events.getCategoId('1').then(
+      res => {
+        this.catego_list = res;
+        console.log("Id de categoria desde el servidor", this.catego_list);
+      }
+    );
+
+
+
+
+
+
+
+
+
     }
+
+
+
+
 
   goToIntro(){
     console.log("go to intro");

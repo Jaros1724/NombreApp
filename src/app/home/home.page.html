@@ -3,18 +3,24 @@
     <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Menu Content</ion-title>
+    <ion-title>HOME
+
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <h1 class="subtitle">Eventos Deportivos</h1>
   <swiper-container
   [pagination]="true"
-  [slidesPerView]="3"
+  [slidesPerView]="2"
+  [loop]="true"
+  [autoplay]="{ delay: 2000 }"
   >
   <swiper-slide *ngFor="let slide of event_list">
-    <img src="{{slide.image}}" >
+    <img src="{{slide.image}}" alt="slide image">
 
   </swiper-slide>
   </swiper-container>
+
 </ion-content>
 <ion-buttom><ion-button (click)="goToIntro()">Ver Intro</ion-button></ion-buttom>

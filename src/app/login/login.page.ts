@@ -60,4 +60,8 @@ export class LoginPage {
       this.loginMessage = Error;
     })
   }
+
+  goToRegistration(){
+   this.navCtrl.navigateForward('/register')
+  }
 }

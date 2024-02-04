@@ -21,4 +21,10 @@ export class MenuPage {
    logout(){
     this.navCtrl.navigateRoot("/login")
    }
+   goToIntro() {
+    this.navCtrl.navigateRoot("menu/intro")
+  }
+  goHome() {
+    this.navCtrl.navigateRoot("menu/home")
+  }
 }
