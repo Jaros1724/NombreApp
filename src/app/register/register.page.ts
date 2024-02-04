@@ -107,5 +107,3 @@ export class RegisterPage  {
 
 
 }
-//crear un no tienes cuenta crea una
-//
